@@ -2,7 +2,7 @@
 title:  "HTB Bizness Writeup"
 date:   2024-01-21 00:30:00 
 categories: HTB Machine
-tags: Authentication_Bypass Binary_exploitation Exploit CVE
+tags: Authentication_Bypass Binary_exploitation CVE_Exploit
 ---
 
 &nbsp;
