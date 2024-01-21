@@ -1,9 +1,9 @@
-# Tables Of Contents
-- >[Enumeration](#item-one)
-- >[Local File Inclusion](#item-two)
-- >[SQL Injection Automation](#item-three)
-- >[SQL Injection Manual](#item-four)
-- >[Privilege Escalation](#item-five)
+---
+title:  "HTB Zipping Writeup"
+date:   2024-01-13 00:30:00 
+categories: HTB Machine
+tags: SQLI Binary_exploitation zip_symlink_abuse LFI
+---
   
 ![](../../../../images/2024-01-19-13-06-34.png)
 
