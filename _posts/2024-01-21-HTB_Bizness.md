@@ -1,5 +1,3 @@
-# HTB: Bizness
-
 ---
 title:  "HTB Bizness Writeup"
 date:   2024-01-21 00:30:00 
