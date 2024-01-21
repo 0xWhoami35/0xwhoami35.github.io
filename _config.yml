@@ -73,7 +73,7 @@ theme_mode: # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: https://ddgimgs-f43e.kxcdn.com/2262461/ooekzq_28f46a0ddc0583235b634bdb3c8dadbb7fe8326d.jpg
+avatar: https://pics.craiyon.com/2023-06-30/4de5a21a620047cd82b1030183ec8a78.webp
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
