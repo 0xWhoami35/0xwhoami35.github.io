@@ -1,11 +1,4 @@
----
-title:  "HTB Broker Writeup"
-date:   2024-01-21 00:30:00 
-categories: HTB Machine
-tags: CVE_Exploit Sudo-nginx
----
-
-![](2024-01-22-21-03-03.png)
+![](/images/broker/2024-01-22-21-03-03.png)
 
 
 # Machine Info
@@ -53,7 +46,7 @@ u:admin
 
 p:admin
 
-![](2024-01-22-21-24-15.png)
+![](/images/broker/2024-01-22-21-24-15.png)
 
 Broker website using `Apache ActiveMQ` . Usually Easy machine using CVE to exploit it . I found `Apache ActiveMQ` Exploit CVE github page here [CVE-2023-46604
 ](https://github.com/evkl1d/CVE-2023-46604)
@@ -102,8 +95,8 @@ There send packet to my webserver python
 
 ```
 Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
-10.10.11.243 - - [22/Jan/2024 23:39:24] "GET /poc.xml HTTP/1.1" 200 -
-10.10.11.243 - - [22/Jan/2024 23:39:24] "GET /poc.xml HTTP/1.1" 200 -
+10.10.11.243 - - [22/Jan//images/broker/2024 23:39:24] "GET /poc.xml HTTP/1.1" 200 -
+10.10.11.243 - - [22/Jan//images/broker/2024 23:39:24] "GET /poc.xml HTTP/1.1" 200 -
 ```
 
 ```
