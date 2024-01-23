@@ -1,3 +1,10 @@
+---
+title:  "HTB Broker Writeup"
+date:   2024-01-21 00:30:00 
+categories: HTB Machine
+tags: CVE_Exploit Sudo-nginx
+---
+
 ![](2024-01-22-21-03-03.png)
 
 
