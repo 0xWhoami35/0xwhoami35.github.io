@@ -54,11 +54,13 @@ u:admin
 p:admin
 
 ## Identify Vulnerability
+
 ![](/images/Broker/2024-01-22-21-24-15.png)
 
 Broker website using `Apache ActiveMQ` . Usually Easy machine using CVE to exploit it . I found `Apache ActiveMQ` Exploit CVE github page here [CVE-2023-46604
 ](https://github.com/evkl1d/CVE-2023-46604)
 .Now download the tools from github page was gave here.
+
 
 # Run CVE Exploit 
 
