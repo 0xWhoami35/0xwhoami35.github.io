@@ -74,7 +74,7 @@ avatar: https://pics.craiyon.com/2023-06-30/4de5a21a620047cd82b1030183ec8a78.web
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
-social_preview_image: # string, local or CORS resources
+social_preview_image: https://pics.craiyon.com/2023-06-30/4de5a21a620047cd82b1030183ec8a78.webp
 
 # boolean type, the global switch for TOC in posts.
 toc: true
