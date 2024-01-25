@@ -24,6 +24,7 @@ tags: SQLI Directory-Traversal Postscript-Injection LFI XSS-Bypass-CSP Symlink F
 
  Looking at the url there have number id so i thinking IDOR vulnerability on this url let's we try change the number id . It's not working maybe IDOR vulnerability on another path .I've been tried xss attack and it's not working because it was prevent by CSP `Content-Security-Policy: The page’s settings blocked the loading of a resource at inline (“script-src”)`.To bypass CSP `script-src` need find xss in this domain and include with script src . Let's do it
 
+## Shell as frank
 
  ## File Upload Bypass
 
@@ -519,6 +520,8 @@ const sequelize = new Sequelize(
 ```
 
 i got the password from database let's try login ssh with this username is `james , neil and frank` and fill it with this password . I've been tried all username only frank successfully login . For privilege escalation i'ill try check what numbers port are open to exploit it . To check openport in localhost you can using netstat
+
+## Shell as neil
 
 ```
 frank@bookworm:~$ netstat -tln
