@@ -96,7 +96,7 @@ Starting server on port 8000
 
     <tr>
       <th scope="row">Order #168</th>
-      <td>Tue Jan 23 /images/bookworm/2024 07:50:12 GMT+0000 (Coordinated Universal Time)</td>
+      <td>Tue Jan 23 2024 07:50:12 GMT+0000 (Coordinated Universal Time)</td>
       <td>£14</td>
       <td>
         <a href="/order/168">View Order</
@@ -105,7 +105,7 @@ Starting server on port 8000
     
     <tr>
       <th scope="row">Order #170</th>
-      <td>Tue Jan 23 /images/bookworm/2024 07:55:01 GMT+0000 (Coordinated Universal Time)</td>
+      <td>Tue Jan 23 2024 07:55:01 GMT+0000 (Coordinated Universal Time)</td>
       <td>£17</td>
       <td>
         <a href="/order/170">View Order</
@@ -114,7 +114,7 @@ Starting server on port 8000
     
     <tr>
       <th scope="row">Order #172</th>
-      <td>Tue Jan 23 /images/bookworm/2024 08:00:58 GMT+0000 (Coordinated Universal Time)</td>
+      <td>Tue Jan 23 2024 08:00:58 GMT+0000 (Coordinated Universal Time)</td>
       <td>£17</td>
       <td>
         <a href="/order/172">View Order</
@@ -123,7 +123,7 @@ Starting server on port 8000
     
     <tr>
       <th scope="row">Order #185</th>
-      <td>Tue Jan 23 /images/bookworm/2024 08:51:47 GMT+0000 (Coordinated Universal Time)</td>
+      <td>Tue Jan 23 2024 08:51:47 GMT+0000 (Coordinated Universal Time)</td>
       <td>£14</td>
       <td>
         <a href="/order/185">View Order</
@@ -131,7 +131,7 @@ Starting server on port 8000
     </tr>
     <tr>
       <th scope="row">Order #230</th>
-      <td>Tue Jan 23 /images/bookworm/2024 11:54:12 GMT+0000 (Coordinated Universal Time)</td>
+      <td>Tue Jan 23 2024 11:54:12 GMT+0000 (Coordinated Universal Time)</td>
       <td>£14</td>
       <td>
         <a href="/order/230">View Order</
@@ -148,7 +148,7 @@ Starting server on port 8000
   </body>
 </html>
 
-10.10.14.122 - - [23/Jan//images/bookworm/2024 07:00:08] "POST / HTTP/1.1" 200 -
+10.10.14.122 - - [23/Jan 2024 07:00:08] "POST / HTTP/1.1" 200 -
 ```
 
 
