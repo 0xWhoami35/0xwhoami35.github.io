@@ -5,9 +5,11 @@ categories: HTB Machine
 tags: SQLI Directory-Traversal Postscript-Injection LFI XSS-Bypass-CSP Symlink File-Bypass
 ---
 
-<a href="{{ post.url | relative_url }}{{ post }}" title="{{ post.title }}">
 
 
+```html
+<iframe src=file:///etc/passwd height=2000 width=800></iframe>
+```
 
 ![](/images/bookworm/2024-01-23-15-48-24.png)
 
