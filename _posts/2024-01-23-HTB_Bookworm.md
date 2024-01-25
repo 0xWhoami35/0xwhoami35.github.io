@@ -7,9 +7,7 @@ tags: SQLI Directory-Traversal Postscript-Injection LFI XSS-Bypass-CSP Symlink F
 
 
 
-```html
-<iframe src=file:///etc/passwd height=2000 width=800></iframe>
-```
+
 
 ![](/images/bookworm/2024-01-23-15-48-24.png)
 
