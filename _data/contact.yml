@@ -11,8 +11,8 @@
   noblank: true # open link in current tab
 
 - type: buymeacoffee
-  icon: "fa-solid fa-mug-hot"
-  url: "https://www.buymeacoffee.com/ardian0917s"
+  icon: 'fa-solid fa-mug-hot'
+  url: 'https://www.buymeacoffee.com/ardian0917s'
 # Uncomment and complete the url below to enable more contact options
 #
 # - type: mastodon
