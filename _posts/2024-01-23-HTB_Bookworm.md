@@ -239,10 +239,10 @@ while True:
 
 To run this code we need running `post.py` and `basket.py`
 
-```
+```html
  python3 post.py | grep href
-10.10.14.122 - - [23/Jan//images/bookworm/2024 07:22:49] "POST / HTTP/1.1" 200 -
-10.10.11.215 - - [23/Jan//images/bookworm/2024 07:23:19] "POST / HTTP/1.1" 200 -
+10.10.14.122 - - [23/Jan 2024 07:22:49] "POST / HTTP/1.1" 200 -
+10.10.11.215 - - [23/Jan 2024 07:23:19] "POST / HTTP/1.1" 200 -
       href="/static/css/bootstrap.min.css"
         <a class="navbar-brand" href="#">Bookworm</a>
               <a class="nav-link " href="/">Home</a>
