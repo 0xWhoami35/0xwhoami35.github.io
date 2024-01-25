@@ -10,8 +10,8 @@
   icon: "fas fa-envelope"
   noblank: true # open link in current tab
 
-- type: buyme
-  icon: "https://upload.wikimedia.org/wikipedia/commons/2/28/JPG_Test.jpg"
+- type: buymeacoffe
+  icon: "fa-solid fa-mug-hot"
   noblank: true
 # Uncomment and complete the url below to enable more contact options
 #
