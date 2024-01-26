@@ -6,13 +6,15 @@ tags: CVE_Exploit Sudo_nginx
 ---
 
 ![](/images/Broker/2024-01-22-21-03-03.png)
-
+## Shell as activemq
 
 # Machine Info
 Broker is an easy difficulty `Linux` machine hosting a version of `Apache ActiveMQ`. Enumerating the version of `Apache ActiveMQ` shows that it is vulnerable to `Unauthenticated Remote Code Execution`, which is leveraged to gain user access on the target. Post-exploitation enumeration reveals that the system has a `sudo` misconfiguration allowing the `activemq` user to execute `sudo /usr/sbin/nginx`, which is similar to the recent `Zimbra` disclosure and is leveraged to gain `root` access. 
 
 
-## Enumeration 
+
+
+### Enumeration 
 Lets we start enum usually i scanning with nmap
 
 ```
@@ -53,7 +55,7 @@ u:admin
 
 p:admin
 
-## Identify Vulnerability
+### Identify Vulnerability
 
 ![](/images/Broker/2024-01-22-21-24-15.png)
 
@@ -120,8 +122,8 @@ activemq@Broker:/opt/apache-activemq-5.15.15/bin$
 ```
 My revshell has been connected so now i'll do upgrade shell 
 
+## Shell as root
 
-## Shell as activemq
 ```
 activemq@Broker:/opt/apache-activemq-5.15.15/bin$ script /dev/null -c bash
 script /dev/null -c bash
@@ -154,12 +156,12 @@ User activemq may run the following commands on Broker:
     (ALL : ALL) NOPASSWD: /usr/sbin/nginx
 ```
 
-## Create malicious nginx config file
+### Create malicious nginx config file
 
 [Nginx config example](https://www.nginx.com/resources/wiki/start/topics/examples/full/) here the config file example . `user` i will change to root for get root access .It must have an `events` to define the number of workers . `http` used for port listen 
 
 
-## File Read only
+### File Read only
 ```
 user root;
 events {
@@ -187,7 +189,7 @@ a2a56d190a061d847b37c35f0d06bea5
 
 To get root access we need append `PUT` in config file 
 
-## File Write
+### File Write
 
 I'll update the config file to enabling PUT
 
