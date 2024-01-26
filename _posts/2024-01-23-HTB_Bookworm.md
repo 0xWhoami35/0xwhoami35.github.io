@@ -26,7 +26,7 @@ tags: SQLI Directory-Traversal Postscript-Injection LFI XSS-Bypass-CSP Symlink F
 
 ## Shell as frank
 
- ## File Upload Bypass
+ ### File Upload Bypass
 
  Moving on to `/profile` path 
 
@@ -36,7 +36,7 @@ The form in `/profile` we can upload avatar image for our account . Only jpg and
 ![](/images/bookworm/2024-01-23-16-25-21.png)
 
 You can using anything name extension files but you must Content-Type `image/jpg` or `image/png`
-## XSS bypassing CSP
+### XSS bypassing CSP
 
 ![](/images/bookworm/2024-01-23-16-27-11.png)
 
@@ -365,7 +365,7 @@ endobj
 ```
 
 
-## Local File Inclusion
+### Local File Inclusion
 
 Let's now test for a Local File Inclusion (LFI) vulnerability using the format of the "Download everything" links
 
@@ -493,7 +493,7 @@ james:x:1000:1000:,,,:/home/james:/bin/bash
 
 That vulnerable lfi and directory traversal . Look at /home directory there have 3 username is `james` , `neil` and `frank`
 
-## Enumerate File System
+### Enumerate File System
 
 The website is used Express , Express usually  used this name files and mostly them used this name files is 
 - index.js
@@ -587,7 +587,7 @@ frank@bookworm:/home/neil$ ls converter/
 calibre  index.js  node_modules  output  package.json  package-lock.json  processing  templates
 ```
 
-## Source Code review
+### Source Code review
 
 
 ```
@@ -778,10 +778,10 @@ Archive:  convert(1).epub
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOpyBwE8Hb6qpuvMcEf76fRrTFuenTzxz+eP+Nw5tMZ/ neil@bookworm
 ```
 
-## Symlink Attacks
+### Symlink Attacks
 
 
-# Symlink on ebookconverter
+### Symlink on ebookconverter
 
 ```
 frank@bookworm:/home/neil/converter/calibre$ echo 'test' > /tmp/test.txt
@@ -819,7 +819,7 @@ const convertEbook = path.join(__dirname, "calibre", "ebook-convert");
 
 
 
-## Web Symlink
+### Web Symlink
 So our found another way to upload the public keys as authorized_keys . Going to localhost:3001 we'll try directory traversal in `outputType`, since the web application does not seem to properly sanitize user input. In the `outputType` section, we specify the path of the neil user's authorized_keys file, in an
 attempt to write the public key to it.
 
@@ -909,7 +909,7 @@ There generated a pdf file using order id .
 
 I used python3 http.server to download `output.pdf`
 
-# Source
+### Source
 genlabel actually a python script not binary . The script are connects to the DB as the bookworm user just like on the website
 
 ```
@@ -941,7 +941,7 @@ cursor = cnx.cursor()
 ```
 This is done in an insecure manner, and will be vulnerable to SQL injection. Let's we inject it
 
-## SQL Injection
+### SQL Injection
 
 The Query SQL is:
 
@@ -957,9 +957,9 @@ sudo genlabel '1111 UNION SELECT 1,2,3,4,5,6,7;'
 
 Nah Sql injection has been injected because i've used 1-7 numbers using Union Select and the output shows 1-7 numbers .
 
-## Postscript Write file and read
+### Postscript Write file and read
 
-# Read
+### Read
 
 ```
 neil@bookworm:~$ sudo genlabel '1111 UNION SELECT "test)
@@ -1025,7 +1025,7 @@ james:$6$m07oa4vs5KUfYS/j$SjFJnikcpxhLK5wt3cOEE218N1Bfv4M3bQyhUspkepSBzefsAKCFpX
 ```
 
 
-# Write
+### Write
 
 To get root ssh access we need upload our public keys into root `authorized_keys` file
 
