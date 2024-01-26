@@ -26,6 +26,8 @@ tags: SQLI Directory-Traversal Postscript-Injection LFI XSS-Bypass-CSP Symlink F
 
 ## Shell as frank
 
+
+
  ### File Upload Bypass
 
  Moving on to `/profile` path 
@@ -60,7 +62,7 @@ Go to your basket and copy this payload and fill it on our edit note
 
 CSP successfully bypassed
 
-## Foothold
+### Foothold
 
 Now that we have started to build an exploit chain, we need to determine how we can weaponize
 this against other users. We could attempt to do a cookie steal via XSS, but the HTTPOnly flag on
@@ -69,7 +71,7 @@ additional actions. The first step here is to identify how we can deliver our pa
 user. Knowing that we have HTML injection in a basket, we can start there. We begin by creating a
 secondary account to experiment with.
 
-## Insecure Direct Object Referencing (IDOR)
+### Insecure Direct Object Referencing (IDOR)
 
 I've tried captured our basket's `Edit Note` request in `Burpsuite` reveals a basket identifier in the URI . Look at `POST` request showing id our basket's . We can finding their basket ID and Send payload xss attack to steal victim cookie . To see if we can leverage this information , we add create one more account then we edit the request in `Burpsuite` to point to our secondary accounts basket ID , which allows us to edit secondary accounts note .
 
@@ -157,7 +159,7 @@ Starting server on port 8000
 
 
 
-# Script
+### Script
 I've been created POC to create new basket id and inject ou payload into them using the  `IDOR` vulnerability and with `Xss` attack to get order a list of orders from existing users. Xss attack used for sending the orders from existing users to my webserver and i can get the a list of orders victim's basket . The code at the below used for find victim's orders id try one by one id also including with my malicious code javascript and after i running this poc i will got orders id victim.
 
 
