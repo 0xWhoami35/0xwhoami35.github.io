@@ -11,6 +11,7 @@
   noblank: true # open link in current tab
 
 - type: buymeacoffee
+  label: buymeacoffe
   icon: 'fa-solid fa-mug-saucer'
   url: 'https://www.buymeacoffee.com/ardian0917s'
 
