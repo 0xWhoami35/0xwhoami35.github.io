@@ -5,6 +5,8 @@ categories: HTB Machine
 tags: Crlf-Injection Directory-Traversal Webshell
 ---
 
+![](https://cal1c0.github.io/assets/img/Clicker/1695303008085.jpg)
+
 ## Shell as www-data
 
 ### Enumeration
