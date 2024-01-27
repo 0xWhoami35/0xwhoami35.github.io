@@ -1,3 +1,10 @@
+---
+title:  "HTB Clicker Writeup"
+date:   2024-01-27 00:30:00 
+categories: HTB Machine
+tags: Crlf-Injection Directory-Traversal
+---
+
 ## Shell as www-data
 
 ### Enumeration
