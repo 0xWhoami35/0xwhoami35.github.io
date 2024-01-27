@@ -113,7 +113,7 @@ pwa:
 paginate: 10
 
 # The base URL of your site
-baseurl: ""
+baseurl: "/test"
 
 # ------------ The following options are not recommended to be modified ------------------
 
@@ -147,7 +147,7 @@ defaults:
   - scope:
       path: _drafts
     values:
-      comments: false
+      comments: true
   - scope:
       path: ""
       type: tabs # see `site.collections`
