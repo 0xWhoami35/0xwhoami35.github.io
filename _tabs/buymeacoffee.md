@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Buymeacoffee
-icon: fas fa-flask
+icon: fa-solid fa-mug-hot
 order: 1
 ---
 -----------
