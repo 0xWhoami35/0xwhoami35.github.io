@@ -7,6 +7,11 @@ tags: Crlf-Injection Directory-Traversal Webshell
 
 ![](https://cal1c0.github.io/assets/img/Clicker/1695303008085.jpg)
 
+# Machine Info
+Clicker is a Medium Linux box featuring a Web Application hosting a clicking game. Enumerating the box, an attacker is able to mount a public NFS share and retrieve the source code of the application, revealing an endpoint susceptible to SQL Injection. Exploiting this vulnerability, an attacker can elevate the privileges of their account and change the username to include malicious PHP code. Accessing the admin panel, an export feature is abused to create a PHP file including the modified username, leading to arbitrary code execution on the machine as `www-data`. Enumeration reveals an `SUID` binary that can access files under the home folder of the user `jack`. By performing a path traversal attack on the binary, the attacker is able to get the SSH key of `jack`, who is allowed to run a monitoring script with arbitrary environment variables with `sudo`. The monitoring script expects a response to a `curl` request in XML format. The attacker, by setting the `http_proxy` variable, is able to intercept and alter the response to the script, in order to include an XXE payload to read the SSH key of the `root` user. Finally, the attacker is able to use the SSH key and get access as the `root` user on the remote machine.
+Related Academy Modules
+
+
 ## Shell as www-data
 
 ### Enumeration
