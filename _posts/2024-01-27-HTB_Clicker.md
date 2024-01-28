@@ -41,7 +41,9 @@ NFS : NFS, or Network File System, serves as a cross-platform protocol designed 
 `mount -o nolock 10.10.11.232:/ /mnt/nfs_file_shares`
 `cd nfs_file_shares/mnt/backups`
 
+
 ![](/images/clicker/2024-01-26-15-44-05.png)
+
 
 Read-only acceptable on `/mnt` so we need move that zip to another directory
 
@@ -67,6 +69,7 @@ There have form register and login let's we create account and login . I've look
 
 
 ![](/images/clicker/2024-01-26-15-53-15.png)
+
 
 There just appearing profile , Logout and play let's we check play first . On `play.php` is clicker also have clicks numbers and levels . Now we'll try read source code in `play.php` 
 
