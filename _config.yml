@@ -67,7 +67,7 @@ theme_mode: # [light|dark]
 # will be added to all image (site avatar & posts' images) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
-img_cdn: 'https://www.otago.ac.nz/_assets/_gfx/logo@2x.png'
+img_cdn: 
 
 # the avatar on sidebar, support local or CORS resources
 avatar: https://pics.craiyon.com/2023-06-30/4de5a21a620047cd82b1030183ec8a78.webp
