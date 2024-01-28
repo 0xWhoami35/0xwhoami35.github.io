@@ -3,6 +3,9 @@ title:  "HTB Bookworm Writeup"
 date:   2024-01-23 00:30:00 
 categories: HTB Machine
 tags: SQLI Directory-Traversal Postscript-Injection LFI XSS-Bypass-CSP Symlink File-Bypass
+image:  
+  path: '/images/bookworm/2024-01-23-15-48-24.png' 
+  src: '/images/bookworm/2024-01-23-15-48-24.png'
 ---
 
 
