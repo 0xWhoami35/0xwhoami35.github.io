@@ -4,8 +4,8 @@ date:   2024-01-21 00:30:00
 categories: HTB Machine
 tags: Authentication_Bypass Binary_exploitation CVE_Exploit
 image:  
-  path: '/images/bizness/2024-01-21-12-45-05.png' 
-  src: '/images/bizness/2024-01-21-12-45-05.png'
+  path: '/images/bizness/photo_2024-01-28_15-51-54.jpg' 
+  src: '/images/bizness/photo_2024-01-28_15-51-54.jpg'
 ---
 
 &nbsp;
