@@ -15,6 +15,10 @@
   icon: 'fa-solid fa-mug-saucer'
   url: 'https://www.buymeacoffee.com/ardian0917s'
 
+  type: hackhtebox
+  label: hackthebox
+  icon: 'fa-regular fa-cube'
+
 
 # Uncomment and complete the url below to enable more contact options
 #
