@@ -77,11 +77,11 @@ Now add `crm.board.htb` in /etc/hosts
 ### Identify Vulnerability
 
 
-![](2024-05-26-23-08-36.png)
+![](https://0xwhoami35.github.io/images/Boardlight/2024-05-26-23-08-36.png)
 
 The Version of Dolibar is 17.0 so let we research about this vendor to see the vendor vulnerable or not
 
-![](2024-05-26-23-10-03.png)
+![](https://0xwhoami35.github.io/images/Boardlight/2024-05-26-23-10-03.png)
 
 
  In Dolibarr 17.0.0 with the CMS Website plugin (core) enabled, an authenticated attacker can obtain remote command execution via php code injection bypassing the application restrictions.
@@ -104,7 +104,7 @@ Now click `Website`and > click `+` > and create your site > Import website templ
 > and put your php revshell code
 
 
-![](2024-05-26-23-56-38.png)
+![](https://0xwhoami35.github.io/images/Boardlight/2024-05-26-23-56-38.png)
 
 
 And click saved
@@ -211,6 +211,3 @@ mount: /dev/../tmp/: can't find in /etc/fstab.
 id
 uid=0(root) gid=0(root) groups=0(root),4(adm),1000(larissa)
 ```
-
-Enjoy : ) 
-
