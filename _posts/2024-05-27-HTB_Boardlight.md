@@ -1,4 +1,4 @@
-# HTB: BoardLight
+
 
 ---
 title:  "HTB BoardLight Writeup"
