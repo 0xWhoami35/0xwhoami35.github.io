@@ -11,7 +11,7 @@ tags: Default_user_pass PHP Code Injection Binary_exploitation CVE
 ## Shell as www-data
 
 
-### Enum
+### Enumeration
 
 ```
 ─# nmap -sC -sV -p- -T4 --min-rate=9326 --vv board.htb           
@@ -99,7 +99,7 @@ as you can see here the user pass default is admin .
 
 After i put that's credentials , i successfully login to dashboard
 
-
+### PHP Code Injection
 Now click `Website`and > click `+` > and create your site > Import website template > Click Load anything template it's ok > Edit page
 > and put your php revshell code
 
@@ -133,7 +133,7 @@ After i research on google about "Where the location Dolibarr default config" i 
 
 [Dolibar Config Location](https://wiki.dolibarr.org/index.php?title=Configuration_file)
 
-
+### Login larissa user using mysql config dolibarr
 ```
 www-data@boardlight:~/html/crm.board.htb/htdocs/conf$ cat conf.php
 cat conf.php
@@ -184,7 +184,7 @@ find / -perm -04000 -ls 2>/dev/null
 ```
 
 Do you see what i see?? yupp that's enlightenment binary , i had saw about this binary vulnerability a few month ago and also have tried to download this binary in my ubuntu and trying to priv esc and it's working
-
+### CVE-2022-37706-LPE-exploit
 [CVE-2022-37706-LPE-exploit](https://github.com/MaherAzzouzi/CVE-2022-37706-LPE-exploit)
 
 
